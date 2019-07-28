@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - db:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  rails_backend:
+    build:
+      context: rails_backend
+      # ホストユーザーIDが1001であると仮定し、各コンテナー内に同じユーザーIDを持つユーザを作成。
+      # ユーザーIDが異なる場合は、ビルドする前にUID環境変数を設定でき、それがビルドの引数として渡される。
+      args:
+        UID: ${UID:-1001}
+    volumes:
+      - ./rails_backend:/usr/src/app
+      - bundle:/usr/local/bundle
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    user: rails
+  
+  nuxt_frontend:
+    build:
+      context: nuxt_frontend
+      args:
+        UID: ${UID:-1001}
+    volumes:
+      - ./nuxt_frontend:/usr/src/app
+    ports:
+      - "3000:3000"
+    user: nuxt
+
+volumes:
+  db:
+  bundle:
