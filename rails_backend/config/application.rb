@@ -31,5 +31,18 @@ module RailsBackend
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # rack-corsの設定。これを設定しないとJavaScriptは他のドメイン上のエンドポイントを紹介できない。
+    # https://qiita.com/arakaji/items/f7d32e1c94d67b3e2606
+    # https://medium.com/@nandhae/2019-how-i-set-up-authentication-with-jwt-in-just-a-few-lines-of-code-with-rails-5-api-devise-9db7d3cee2c0
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', 
+          :headers => :any, 
+          :expose  => ['access-token', 'expiry', 'token-type', 'Authorization'],
+          :methods => [:get, :patch, :put, :delete, :post, :options, :show, :head]
+      end
+    end
   end
 end

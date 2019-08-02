@@ -1,0 +1,66 @@
+<template>
+  <v-layout>
+    <v-flex>
+      <v-card v-if="$auth.loggedIn">
+        <v-alert type="error" :value="error">{{error}}</v-alert>
+        <v-card-text>
+          Logged in as {{$auth.user.email}}
+        </v-card-text>
+        <v-card-actions>
+          <v-btn @click="logout">Log out</v-btn>
+        </v-card-actions>
+      </v-card>
+      <v-card v-else>
+        <v-alert type="error" :value="error">{{error}}</v-alert>
+        <v-card-text>
+          <v-form>
+            <v-text-field v-model="email" label="Email" />
+            <v-text-field v-model="password" label="Password" type="password" />
+          </v-form>
+          <v-card-actions>
+            <v-btn @click="login">Log in</v-btn>
+          </v-card-actions>
+        </v-card-text>
+      </v-card>
+    </v-flex>
+  </v-layout>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      email: '',
+      password: '',
+      error: null
+    }
+  },
+  methods: {
+    login: function () {
+      this.$auth.loginWith("local", {
+        data: {
+          user: {
+            email: this.email,
+            password: this.password
+          }
+        }
+      }).then((res) => {
+          console.log('Auth Success')
+          console.log(this.$auth.strategies)
+          console.log(this.$auth.token)
+          console.log(this.$auth.loggedIn)
+          console.log(this.$auth.options)
+        }).catch((err) => {
+          console.log(err)
+          this.$notify({
+            title: 'Important message',
+            text: err
+            })
+        })
+    },
+    logout: function () {
+      this.$auth.logout().catch(e => {this.error = e + ''})
+    }
+  }
+}
+</script>

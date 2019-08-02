@@ -34,6 +34,44 @@ module.exports = {
         })
       }
     }
+  },
+
+  modules: [
+    '@nuxtjs/vuetify',
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
+  ],
+    // 行き先をrailsに設定。
+  axios: {
+    host: 'localhost',
+    port: 8080,
+    prefix: '/api'
+  },
+  auth: {
+    // https://auth.nuxtjs.org/schemes/local.html#endpoints
+    // axiosで送られる。
+    strategies: {
+      local: {
+        endpoints: {
+          login:  { url: '/users/sign_in'},
+          logout: { url: '/users/sign_out', method: 'delete' },
+          user:   { url: '/users/current' },
+          tokenRequired: true,
+          tokenType: 'Bearer'
+        }
+      }
+    },
+    redirect: {
+      login: '/login',
+      home: '/'
+    }
+    // cookie: false,
   }
+  // router: {
+  //   middleware: ['auth']
+  // },
+  // }
 }
+
+
 
