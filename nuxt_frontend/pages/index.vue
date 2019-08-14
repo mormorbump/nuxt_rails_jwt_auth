@@ -15,7 +15,8 @@
 <script>
 export default {
   // これを仕様すると、ページをレンダリングする前に実行できる。つまり認証を必ず前に行うということ。
-  middleware: ['auth'],
+  // 認証がなかった場合、ログインページにリダイレクトされる
+  // middleware: ['auth'],
   data () {
     return {
       examples: []

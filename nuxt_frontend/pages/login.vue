@@ -35,7 +35,7 @@ export default {
       error: null
     }
   },
-  methods: {
+    methods: {
     login: function () {
       this.$auth.loginWith("local", {
         data: {
@@ -45,22 +45,36 @@ export default {
           }
         }
       }).then((res) => {
-          console.log('Auth Success')
-          console.log(this.$auth.strategies)
-          console.log(this.$auth.token)
-          console.log(this.$auth.loggedIn)
-          console.log(this.$auth.options)
-        }).catch((err) => {
-          console.log(err)
-          this.$notify({
-            title: 'Important message',
-            text: err
-            })
-        })
+            console.log('Auth Success')
+            console.log(this.$auth.strategies)
+            console.log(this.$auth.token)
+            console.log(this.$auth.loggedIn)
+            console.log(this.$auth.options)
+            }).catch(e => {this.error = e + ''})
     },
     logout: function () {
       this.$auth.logout().catch(e => {this.error = e + ''})
     }
   }
+//   methods: {
+//     login: function () {
+//         this.$auth.login({
+//           data: {
+//             user: {
+//               email: this.email,
+//               password: this.password
+//             }
+//           }
+//         }).then((res) => {
+//             console.log('Auth Success')
+//             console.log(this.$auth.strategies)
+//             console.log(this.$auth.token)
+//             console.log(this.$auth.loggedIn)
+//             console.log(this.$auth.options)
+//             }).catch(e => {this.error = e + ''})}
+//     },
+//     logout: function () {
+//       this.$auth.logout().catch(e => {this.error = e + ''})
+//     }
 }
 </script>

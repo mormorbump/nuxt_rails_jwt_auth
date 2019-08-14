@@ -5,5 +5,4 @@ class JwtBlacklist < ApplicationRecord
     #   失効時に、jtiカラムを使用して新しいレコードを作成。
     # これをuser.rbのjwt_revocation_strategy: JwtBlacklistでインポート。
     include Devise::JWT::RevocationStrategies::Blacklist
-    # self.table_name = 'jwt_blacklists'
 end

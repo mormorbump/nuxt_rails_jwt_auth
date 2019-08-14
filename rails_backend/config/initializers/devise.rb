@@ -4,7 +4,7 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
   # 追加 https://medium.com/@nandhae/2019-how-i-set-up-authentication-with-jwt-in-just-a-few-lines-of-code-with-rails-5-api-devise-9db7d3cee2c0
-  config.navigational_formats = []
+  # config.navigational_formats = []
 
 
   # まず最初に、生成されたトークンに署名するのに使われる秘密鍵を設定しなければならないので、deviseのイニシャライザで設定。
@@ -14,13 +14,13 @@ Devise.setup do |config|
     jwt.secret = Rails.application.credentials[:jwt_secret]
 
     # jwt.secret = ENV['DEVISE_SECRET_KEY']
-    jwt.dispatch_requests = [
-      ['POST', %r{^api/users/sign_in$}]
-    ]
-    jwt.revocation_requests = [
-      ['DELETE', %r{^api/users/destroy$}]
-    ]
-    jwt.expiration_time = 5.minutes.to_i
+    # jwt.dispatch_requests = [
+    #   ['POST', %r{^/api/users/sign_in$}]
+    # ]
+    # jwt.revocation_requests = [
+    #   ['DELETE', %r{^/api/users/destroy$}]
+    # ]
+    # jwt.expiration_time = 5.minutes.to_i
   end
 
 

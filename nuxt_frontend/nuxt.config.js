@@ -50,26 +50,34 @@ module.exports = {
   auth: {
     // https://auth.nuxtjs.org/schemes/local.html#endpoints
     // axiosで送られる。
+    // ver4.00ぐらいでこうかくと、api/が一個増えてまう。
     strategies: {
       local: {
         endpoints: {
-          login:  { url: '/users/sign_in'},
+          login:  { url: '/users/sign_in', method: 'post' },
           logout: { url: '/users/sign_out', method: 'delete' },
-          user:   { url: '/users/current' },
-          tokenRequired: true,
-          tokenType: 'Bearer'
-        }
+          user:   { url: '/users/current', propertyName: false }
+        },
+        // tokenRequired: true,
+        // tokenType: false,
+      },
+      token: {
+        name: 'token'
       }
+      // cookie: {
+      //   name: 'token'
+      // },
     },
-    redirect: {
-      login: '/login',
-      home: '/'
-    }
-    // cookie: false,
+    // redirect: {
+    //   login: '/login',
+    //   home: '/'
+    // }
+    mode: 'spa',
+    cookie: false,
+  },
+  router: {
+    middleware: ['auth']
   }
-  // router: {
-  //   middleware: ['auth']
-  // },
   // }
 }
 
