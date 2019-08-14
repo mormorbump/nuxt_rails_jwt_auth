@@ -1,10 +1,10 @@
 # README
 
 # おっきい流れ
-rails: database.ymlをdocker用に書き直す
-nuxt: package.jsonで、HOSTを0.0.0.0にして、どっからでもバインドできるようにする。
-rails: データを用意。何らかのコントローラでjsonに変換。
-rails: rails db:migrate
+*rails: database.ymlをdocker用に書き直す
+*nuxt: package.jsonで、HOSTを0.0.0.0にして、どっからでもバインドできるようにする。
+*rails: データを用意。何らかのコントローラでjsonに変換。
+*rails: rails db:migrate
 rails: ルーティングもデフォルトのフォーマットがjsonになるように変更。scopeでapiになるように区切る。必要あればv1とかも。
 rails: ApplicationコントローラでMimeRespondsクラスをinclude。全てのレスポンスがjsonになるようオーバーライド(これ、devise入れてからじゃないと動かない。)
 nuxt: yarn add @nuxtjs/axios @nuxtjs/vuetify (axiosだけでいいかも)
