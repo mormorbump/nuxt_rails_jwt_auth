@@ -72,11 +72,13 @@ module.exports = {
     //   login: '/login',
     //   home: '/'
     // }
-    mode: 'spa',
-    cookie: false,
+    cookie: false
   },
+  // FIXME: 認証が成功してもログイン画面にリダイレクトしてしまう。
+  // loggedIn変数に認証情報自体は入ってるのでそれで分岐。
+  // nuxtの性質だと思うので、要検討。
   router: {
-    middleware: ['auth']
+    // middleware: ['auth']
   }
   // }
 }
