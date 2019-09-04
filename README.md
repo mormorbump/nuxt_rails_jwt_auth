@@ -1,5 +1,12 @@
 # README
 
+```
+docker-compose build
+docker-compose run -u root backend bundle
+docker-compose run frontend yarn
+docker-compose up
+```
+
 # おっきい流れ
 
 rails: database.ymlをdocker用に書き直す
