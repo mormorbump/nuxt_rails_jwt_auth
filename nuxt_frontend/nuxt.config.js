@@ -61,9 +61,9 @@ module.exports = {
         // tokenRequired: true,
         // tokenType: false,
       },
-      token: {
-        name: 'token'
-      }
+      // token: {
+      //   name: 'token'
+      // }
       // cookie: {
       //   name: 'token'
       // },
