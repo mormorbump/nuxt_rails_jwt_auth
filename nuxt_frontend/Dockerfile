@@ -1,4 +1,4 @@
-FROM node:10
+FROM node:10.16.0
 
 ARG UID
 RUN adduser nuxt --uid $UID --disabled-password --gecos ""
