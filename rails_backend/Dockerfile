@@ -1,5 +1,5 @@
 # 2.5.5
-FROM ruby:2.5
+FROM ruby:2.5.5
 
 ARG UID
 # https://www.atmarkit.co.jp/ait/articles/1811/08/news037.html

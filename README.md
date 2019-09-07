@@ -2,8 +2,11 @@
 
 ```
 docker-compose build
-docker-compose run -u root backend bundle
-docker-compose run frontend yarn
+docker-compose run --rm nuxt_frontend yarn
+docker-compose run --rm rails_backend bin/rails db:setup
+docker-compose run --rm rails_backend bin/rails c
+User.create(email: "test@test", password: "testtest")
+ctr + c
 docker-compose up
 ```
 

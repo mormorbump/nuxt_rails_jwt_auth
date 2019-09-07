@@ -78,7 +78,7 @@ module.exports = {
   // loggedIn変数に認証情報自体は入ってるのでそれで分岐。
   // nuxtの性質だと思うので、要検討。
   router: {
-    // middleware: ['auth']
+    middleware: ['auth']
   }
   // }
 }
